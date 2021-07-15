@@ -1,0 +1,8 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <%= link_to "Instagram", user_path(current_user), class:"navbar-brand" %>
+    <%= link_to "Users", users_path, class:"btn btn-dark" %>
+    <%= link_to "Feed", root_path, class:"btn btn-dark" %>
+    <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"btn btn-outline-light" %>
+  </div>
+</nav>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Instagram</title>
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+
+
+  <% if user_signed_in? %>
+    <nav class="navbar navbar-light bg-light d-flex">
+      <div class="container">
+        <div class="logo">
+          <a class="navbar-brand">
+            <%= link_to "Instagram", user_path(current_user), class:"navbar-brand" %>
+          </a>
+        </div>
+        <a>
+            <%= link_to "Feed", root_path, class:"navbar-brand" %>
+        </a>
+        <a>
+            <%= link_to "Users", users_path, class:"navbar-brand" %>
+        </a>
+        <a>
+            <%= link_to "Sign out", destroy_user_session_path, method: :delete, class:"navbar-brand" %>
+        </a>
+      </div>
+    </nav>
+
+  <br/>
+    <% else %>
+      <br/><br/><br/>  
+    <% end %> 
+
+
+    <main class="container" style="min-height: 500px;">
+      <%= yield %>
+    </main>
+
+
+  </body>
+</html>
+

@@ -1,0 +1,26 @@
+<div class="container">
+<div class="col-md-8 basic-info">
+
+    <div>
+    		<h2>It's <%= @user.email  %></h2><br>
+    		<p>
+				<% if current_user.present? && current_user != @user && !current_user.followings.include?(User.find(@user.id)) %>
+					<%= link_to("Follow", follows_path(following_id: @user.id), method: :post, class:"btn btn-dark")  %>
+				<% elsif current_user.present? && current_user != @user %>
+					<%= link_to("Unfollow", follow_path(@user), method: :delete, class:"btn btn-dark") %>
+				<% end %>
+			</p>
+			
+	</div>
+	<p>
+		<%= link_to("Followers", user_followers_path(@user), class:"btn btn-dark")  %>
+		<%= link_to("Followings", user_followings_path(@user), class:"btn btn-dark")  %>
+	</p>
+
+	<%= link_to "Posts", user_posts_path(@user), class:"btn btn-dark" %>
+	<br/><br/>
+	<% if @user.id == current_user.id %>
+		<%= link_to "Add post", new_user_post_path(current_user.id), class:"btn btn-dark" %>
+	<% end %>
+</div>
+</div>

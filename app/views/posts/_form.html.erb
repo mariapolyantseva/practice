@@ -1,0 +1,36 @@
+<%= form_with(model: [@user, post], local: true) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div> 
+  <% end %>
+
+
+  <div class="field">
+    <%= form.hidden_field :image, value: post.cached_image_data %>
+    <%= form.file_field :image %>
+  </div>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>  
+
+<!--hidden fields --> 
+  <div class="field">
+    <%= form.text_field :user_id, id: :post_user_id, value: current_user.id, type: :hidden %>
+  </div>
+  <div class="field">
+    <%= form.text_field :user_name, value: current_user.email, type: :hidden %>
+  </div>
+<!--hidden fields -->  
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
