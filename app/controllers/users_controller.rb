@@ -10,23 +10,3 @@ class UsersController < ApplicationController
 	end
 
 end
-=begin
-	def edit
-		@user = User.find(params[:id])
-	end
-
-	def update
-		@user = User.find(params[:id])
-		if user.update(user_update_params)
-			redirect_to user_path(@user)
-		else
-			render :edit
-		end
-	end
-
-	private
-
-	def user_update_params
-		params.require(:user).permit(:email)
-	end
-=end
