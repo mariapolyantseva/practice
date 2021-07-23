@@ -3,7 +3,7 @@ class LikesController < ActionController::Base
 	before_action :load_user, :load_post
 
 	def create
-		if current_user.likes.where(post_id: @post) == []
+		if !current_user.likes.exists?(post_id: @post)
 
 			@like = current_user.likes.build(post: @post)
 
@@ -14,7 +14,8 @@ class LikesController < ActionController::Base
 	end
 
 	def destroy
-		if !(current_user.likes.where(post_id: @post) == [])
+		if current_user.likes.exists?(post_id: @post)
+
 			@like = current_user.likes.where(post_id: @post).take
 			@like.destroy
 

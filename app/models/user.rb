@@ -8,8 +8,8 @@ class User < ApplicationRecord
   has_many :following_follows, foreign_key: :follower_id, class_name: "Follow"
   has_many :followings, through: :following_follows, source: :following  
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

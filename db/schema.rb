@@ -69,7 +69,7 @@ ActiveRecord::Schema.define(version: 2021_07_13_104549) do
     t.string "user_name"
     t.string "image"
     t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false 
     t.integer "user_id"
     t.text "description"
     t.text "image_data"

@@ -23,7 +23,7 @@ class PostsController < ApplicationController
       if @post.save
           redirect_to user_post_path(@user, @post), flash: {success: "Post was added"}
       else
-          redirect_to :new, flash: {alert: "Some error occured"}
+          render action: :new
       end
   end 
 
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
   def destroy
     @post = @user.posts.find(params[:id])
     @post.destroy
-    redirect_to action: :index
+    render action: :index
   end
 
 

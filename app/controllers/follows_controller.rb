@@ -2,7 +2,8 @@ class FollowsController < ActionController::Base
 	before_action :authenticate_user!
 
 	def create
-		if !current_user.followings.include?(User.find(params[:following_id]))
+		if !current_user.followings.exists?(params[:following_id])
+		#if !current_user.followings.include?(User.find(params[:following_id]))
 			@user = User.find(params[:following_id])
 			follower_user = current_user
 			following_user = User.find(params[:following_id])
@@ -14,7 +15,8 @@ class FollowsController < ActionController::Base
 	end
 
 	def destroy
-		if current_user.followings.include?(User.find(params[:id]))
+		if current_user.followings.exists?(params[:id])
+		#if current_user.followings.include?(User.find(params[:id]))
 			@follower_id = current_user.id
 			@following_id = current_user.followings.find(params[:id]).id
 			@follow = Follow.where(follower_id: @follower_id, following_id: @following_id).take

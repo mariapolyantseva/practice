@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index 
     if current_user.followings.exists?
       @user = User.find(current_user.followings.pluck(:id))
